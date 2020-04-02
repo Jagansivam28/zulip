@@ -1129,6 +1129,17 @@ input[type=checkbox].inline-block {
         height: 100%;
     }
 
+    #user-avatar-background {
+        content: '';
+        background-color: hsl(0, 0%, 0%);
+        height: 100%;
+        width: 100%;
+        opacity: 0.6;
+        z-index: 99;
+        position: absolute;
+        display: none;
+    }
+
     #user_avatar_delete_button {
         cursor: pointer;
         color: hsl(236, 33%, 90%);
@@ -1138,6 +1149,25 @@ input[type=checkbox].inline-block {
         top: 10px; // 31.5px + 5px + 30px
         right: 10px;
         z-index: 99;
+    }
+
+    #user_avatar_upload_button {
+        cursor: pointer;
+        color: hsl(236, 33%, 90%);
+        opacity: 0;
+        font-size: 0.85rem;
+        position: absolute;
+        top: 90px;
+        right: 20px;
+        z-index: 99;
+    }
+
+    #user-avatar-spinner {
+        position: absolute;
+        top: 40%;
+        right: 40%;
+        z-index: 99;
+        display: none;
     }
 
     #user-avatar-source {
@@ -1163,14 +1193,18 @@ input[type=checkbox].inline-block {
         #user-avatar-block::after {
             content: '';
             background-color: hsl(0, 0%, 0%);
-            height: 200px;
-            width: 200px;
+            height: 100%;
+            width: 100%;
             opacity: 0.6;
             z-index: 99;
             position: absolute;
         }
 
         #user_avatar_delete_button {
+            opacity: 1;
+        }
+
+        #user_avatar_upload_button {
             opacity: 1;
         }
 

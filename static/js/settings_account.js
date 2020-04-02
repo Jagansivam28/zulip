@@ -564,9 +564,10 @@ exports.set_up = function () {
         }
 
         $("#user-avatar-source").hide();
-
-        const spinner = $("#upload_avatar_spinner").expectOne();
-        loading.make_indicator(spinner, {text: i18n.t('Uploading profile picture.')});
+        $('#user-avatar-background').css({display: 'block'});
+        $('#user-avatar-spinner').css({display: 'block'});
+        $('#user_avatar_upload_button').hide();
+        $('#user_avatar_delete_button').hide();
 
         channel.post({
             url: '/json/users/me/avatar',
@@ -575,14 +576,19 @@ exports.set_up = function () {
             processData: false,
             contentType: false,
             success: function () {
-                loading.destroy_indicator($("#upload_avatar_spinner"));
-                $("#user_avatar_delete_button").show();
+                $('#user-avatar-background').css({display: 'none'});
+                $('#user-avatar-spinner').css({display: 'none'});
+                $('#user_avatar_upload_button').show();
+                $('#user_avatar_delete_button').show();
                 $("#user_avatar_file_input_error").hide();
                 $("#user-avatar-source").hide();
                 // Rest of the work is done via the user_events -> avatar_url event we will get
             },
             error: function (xhr) {
-                loading.destroy_indicator($("#upload_avatar_spinner"));
+                $('#user-avatar-background').css({display: 'none'});
+                $('#user-avatar-spinner').css({display: 'none'});
+                $('#user_avatar_upload_button').show();
+                $('#user_avatar_delete_button').show();
                 if (page_params.avatar_source === 'G') {
                     $("#user-avatar-source").show();
                 }
