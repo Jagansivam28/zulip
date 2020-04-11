@@ -556,55 +556,55 @@ exports.set_up = function () {
 
 
     function upload_avatar(file_input) {
-        const form_data = new FormData();
-
-        form_data.append('csrfmiddlewaretoken', csrf_token);
-        for (const [i, file] of Array.prototype.entries.call(file_input[0].files)) {
-            form_data.append('file-' + i, file);
-        }
-
-        $("#user-avatar-source").hide();
-        $('#user-avatar-background').css({display: 'block'});
-        $('#user-avatar-spinner').css({display: 'block'});
-        $('#user_avatar_upload_button').hide();
-        $('#user_avatar_delete_button').hide();
-
-        channel.post({
-            url: '/json/users/me/avatar',
-            data: form_data,
-            cache: false,
-            processData: false,
-            contentType: false,
-            success: function () {
-                $('#user-avatar-background').css({display: 'none'});
-                $('#user-avatar-spinner').css({display: 'none'});
-                $('#user_avatar_upload_button').show();
-                $('#user_avatar_delete_button').show();
-                $("#user_avatar_file_input_error").hide();
-                $("#user-avatar-source").hide();
-                // Rest of the work is done via the user_events -> avatar_url event we will get
-            },
-            error: function (xhr) {
-                $('#user-avatar-background').css({display: 'none'});
-                $('#user-avatar-spinner').css({display: 'none'});
-                $('#user_avatar_upload_button').show();
-                $('#user_avatar_delete_button').show();
-                if (page_params.avatar_source === 'G') {
-                    $("#user-avatar-source").show();
-                }
-                const $error = $("#user_avatar_file_input_error");
-                $error.text(JSON.parse(xhr.responseText).msg);
-                $error.show();
-            },
+        $("#crop_and_upload_button").on("click", function () {
+            const form_data = new FormData();
+            form_data.append('csrfmiddlewaretoken', csrf_token);
+            for (const [i, file] of Array.prototype.entries.call(file_input[0].files)) {
+                form_data.append('file-' + i, file);
+            }
+            $("#user-avatar-source").hide();
+            $('#user-avatar-background').css({display: 'block'});
+            $('#user-avatar-spinner').css({display: 'block'});
+            $('#user_avatar_upload_button').hide();
+            $('#user_avatar_delete_button').hide();
+            channel.post({
+                url: '/json/users/me/avatar',
+                data: form_data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function () {
+                    $('#user-avatar-background').css({display: 'none'});
+                    $('#user-avatar-spinner').css({display: 'none'});
+                    $('#user_avatar_upload_button').show();
+                    $('#user_avatar_delete_button').show();
+                    $("#user_avatar_file_input_error").hide();
+                    $("#user-avatar-source").hide();
+                    overlays.close_modal("upload_image_model");
+                    // Rest of the work is done via the user_events -> avatar_url event we will get
+                },
+                error: function (xhr) {
+                    $('#user-avatar-background').css({display: 'none'});
+                    $('#user-avatar-spinner').css({display: 'none'});
+                    $('#user_avatar_upload_button').show();
+                    $('#user_avatar_delete_button').show();
+                    if (page_params.avatar_source === 'G') {
+                        $("#user-avatar-source").show();
+                    }
+                    const $error = $("#user_avatar_file_input_error");
+                    $error.text(JSON.parse(xhr.responseText).msg);
+                    $error.show();
+                    overlays.close_modal("upload_image_model");
+                },
+            });
         });
-
     }
 
     avatar.build_user_avatar_widget(upload_avatar);
 
     if (page_params.realm_name_changes_disabled) {
         $(".name_change_container").hide();
-    }
+    };
 
 };
 

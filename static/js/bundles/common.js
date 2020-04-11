@@ -21,3 +21,5 @@ import "source-sans-pro/source-sans-pro.css";
 import "../../styles/pygments.scss";
 import "@uppy/core/dist/style.css";
 import "@uppy/progress-bar/dist/style.css";
+import "croppie/croppie.js";
+import 'croppie/croppie.css';

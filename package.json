@@ -1,10 +1,4 @@
 {
-  "name": "zulip",
-  "version": "0.0.0",
-  "license": "Apache-2.0",
-  "description": "",
-  "private": true,
-  "main": "",
   "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -23,6 +17,7 @@
     "clipboard": "^2.0.4",
     "core-js": "^3.0.1",
     "css-loader": "^3.2.0",
+    "croppie": "^2.6.0",
     "emoji-datasource-google": "^5.0.1",
     "emoji-datasource-google-blob": "npm:emoji-datasource-google@^3.0.0",
     "emoji-datasource-twitter": "^5.0.1",
@@ -73,6 +68,7 @@
     "xdate": "^0.8.2",
     "zxcvbn": "^4.4.2"
   },
+  "description": "",
   "devDependencies": {
     "@types/html-minifier": "^3.5.3",
     "@types/jquery": "^3.3.31",
@@ -103,14 +99,19 @@
     "webpack-dev-server": "^3.5.1",
     "yarn-deduplicate": "^1.1.1"
   },
+  "license": "Apache-2.0",
+  "main": "",
+  "name": "zulip",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zulip/zulip.git"
+  },
   "scripts": {
     "postinstall": "rm -rf ./var/webpack-cache",
     "lint": "eslint --quiet --cache",
     "lint-fix": "eslint --quiet --fix",
     "lint-loud": "eslint static/js frontend_tests --cache"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zulip/zulip.git"
-  }
+  "version": "0.0.0"
 }

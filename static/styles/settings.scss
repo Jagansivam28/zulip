@@ -1170,21 +1170,6 @@ input[type=checkbox].inline-block {
         display: none;
     }
 
-    #user-avatar-source {
-        margin-left: 10px;
-        width: 200px;
-        height: 20px;
-        position: absolute;
-        bottom: 6px;
-        left: 0%;
-        font-size: 0.9em;
-        visibility: hidden;
-
-        a {
-            color: hsl(0, 0%, 100%);
-        }
-    }
-
     .guest-avatar::after {
         outline: 9px solid hsl(0, 0%, 100%);
     }
@@ -1198,6 +1183,7 @@ input[type=checkbox].inline-block {
             opacity: 0.6;
             z-index: 99;
             position: absolute;
+            cursor: pointer;
         }
 
         #user_avatar_delete_button {
@@ -1207,11 +1193,23 @@ input[type=checkbox].inline-block {
         #user_avatar_upload_button {
             opacity: 1;
         }
+    }
+}
 
-        #user-avatar-source {
-            visibility: visible;
-            z-index: 99;
-        }
+#user-avatar-source {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background-color: hsl(0, 0%, 0%);
+    opacity: 0.6;
+    position: absolute;
+    bottom: 0px;
+    font-size: 1.2em;
+    z-index: 99;
+    a {
+        color: hsl(0, 0%, 100%);
+        position: relative;
+        top: 10px;
     }
 }
 

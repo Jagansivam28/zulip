@@ -194,6 +194,19 @@
                 </button>
             </div>
         </div>
+        <div id="upload_image_model" class="modal modal-bg hide fade" tabindex="-1" role="dialog" aria-labelledby="deactivation_self_modal_label" aria-hidden="true">
+             <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{t 'Close' }}"><span aria-hidden="true">&times;</span></button>
+                <h3 id="deactivation_self_modal_label">{{t "Upload Profile Picture" }} </h3>
+            </div>
+            <div id="image_demo"></div>
+                <div class="modal-footer">
+                    <button class="button" data-dismiss="modal">{{t "Cancel" }}</button>
+                    <button class="button rounded sea-green rounded" id="crop_and_upload_button">
+                        <span>{{t "Upload Image" }}</span>
+                    </button>
+                </div>
+        </div>
 
         <hr class="settings_separator" />
 

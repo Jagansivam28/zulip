@@ -41,16 +41,39 @@ exports.build_bot_edit_widget = function (target) {
 };
 
 exports.build_user_avatar_widget = function (upload_function) {
-    const get_file_input = function () {
-        return $('#user_avatar_file_input').expectOne();
-    };
-
     if (page_params.avatar_source === 'G') {
         $("#user_avatar_delete_button").hide();
         $("#user-avatar-source").show();
     } else {
         $("#user-avatar-source").hide();
     }
+    const basic = $("#image_demo").croppie({
+        viewport: {width: 200, height: 200, type: 'square'},
+        boundary: {width: 300, height: 300},
+        showZoomer: true,
+        maxZoomedCropWidth: 400,
+        enableExif: true,
+    });
+    $('#user_avatar_file_input').on('change', function () {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            basic.croppie("bind", {
+                url: e.target.result,
+                points: [77, 469, 280, 739],
+            }).then(function () {
+                $('.cr-slider').attr({min: 0.1000, max: 1.5000});
+            });
+
+        };
+
+        reader.readAsDataURL(this.files[0]);
+        overlays.open_modal('upload_image_model');
+    });
+    const get_file_input = function () {
+        return $('#user_avatar_file_input').expectOne();
+
+    };
 
     $("#user_avatar_delete_button").on('click keydown', function (e) {
         e.preventDefault();

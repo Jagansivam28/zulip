@@ -233,7 +233,6 @@ def set_avatar_backend(request: HttpRequest, user_profile: UserProfile) -> HttpR
     upload_avatar_image(user_file, user_profile, user_profile)
     do_change_avatar_fields(user_profile, UserProfile.AVATAR_FROM_USER)
     user_avatar_url = avatar_url(user_profile)
-
     json_result = dict(
         avatar_url = user_avatar_url
     )
